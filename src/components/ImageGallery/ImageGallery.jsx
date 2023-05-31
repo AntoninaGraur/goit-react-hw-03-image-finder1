@@ -4,12 +4,12 @@ import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 
 class ImageGallery extends Component {
   render() {
-    const { images } = this.props;
+    const { images} = this.props;
 
     return (
       <ul>
         {images.map(image => (
-          <ImageGalleryItem key={image.id} image={image} />
+          <ImageGalleryItem key={image.id} image={image.webformatURL} />
         ))}
       </ul>
     );

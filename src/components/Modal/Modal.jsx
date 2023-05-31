@@ -1,37 +1,65 @@
-import React, { Component } from 'react';
+import  { Component } from 'react';
+
+
+import { createPortal } from 'react-dom';
+
+
+const modalRoot = document.querySelector('#modal-root')
 
 class Modal extends Component {
   componentDidMount() {
-    window.addEventListener('keydown', this.handleKeyDown);
+    document.addEventListener('keydown', this.handleKeyDown);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.handleKeyDown);
+    document.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handleKeyDown = event => {
+  handleKeyDown = (event) => {
     if (event.code === 'Escape') {
-      this.props.onClose();
+      this.props.onCloseModal();
     }
   };
 
-  handleOverlayClick = event => {
+  handleClick = (event) => {
     if (event.target === event.currentTarget) {
-      this.props.onClose();
+      this.props.onCloseModal();
     }
   };
 
   render() {
-    const { largeImageURL } = this.props;
-
-    return (
-      <div onClick={this.handleOverlayClick}>
-        <div>
-          <img src={largeImageURL} alt="" />
-        </div>
-      </div>
+    return createPortal(
+      <div>
+        <div>dfhdhd</div>
+      </div>, modalRoot
     );
   }
 }
+  
+
 
 export default Modal;
+
+
+
+
+
+//     const { showModal, selectedImage } = this.props;
+
+//     if (!showModal) {
+//       return null;
+//     }
+
+//     const instance = basicLightbox.create(`
+//       <img src="${selectedImage}" />
+//     `);
+
+//     instance.show();
+
+//     return (
+//       <div>
+//         <div>dfhdhd</div>
+//       </div>
+//     );
+//   }
+// }

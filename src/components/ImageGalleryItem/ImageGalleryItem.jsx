@@ -1,13 +1,14 @@
 
 import React from 'react';
 
-const ImageGalleryItem = ({ webformatURL, largeImageURL, onClick }) => (
+const ImageGalleryItem = ({ image, handleImageClick, largeImageURL, type }) => (
   <li>
     <img
-      src={webformatURL}
-      alt=""
+      src={image}
+      alt={type}
       data-source={largeImageURL}
-      onClick={() => onClick(largeImageURL)}
+      onClick={() => handleImageClick(largeImageURL)}
+      loading='lazy'
     />
   </li>
 );

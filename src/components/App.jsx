@@ -55,7 +55,7 @@ class App extends Component {
     this.fetchImages();
   };
 
-  handleImageClick = largeImageURL => {
+ handleImageClick = (largeImageURL) => {
     this.setState({ showModal: true, selectedImage: largeImageURL });
   };
 
@@ -67,7 +67,7 @@ class App extends Component {
     const { images, loading, showModal, selectedImage } = this.state;
 
     return (
-      <div className="app">
+      <div>
         <Searchbar onSubmit={this.handleSearchSubmit} />
 
         <ImageGallery images={images} />
