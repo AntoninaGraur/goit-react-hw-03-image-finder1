@@ -1,8 +1,8 @@
-
+import { Component } from 'react';
 
 import { FaSearch } from 'react-icons/fa';
 
-import { Component } from 'react';
+import { Header, SearchInput, SearchBtn, SearchForm } from './SearchBar.styled';
 
 class Searchbar extends Component {
   state = {
@@ -23,13 +23,13 @@ class Searchbar extends Component {
     const { query } = this.state;
 
     return (
-      <header>
-        <form  onSubmit={this.handleSubmit}>
-          <button type="submit">
-            <FaSearch />{' '}
-          </button>
+      <Header>
+        <SearchForm  onSubmit={this.handleSubmit}>
+          <SearchBtn type="submit">
+            <FaSearch />
+          </SearchBtn>
 
-          <input
+          <SearchInput
             
             type="text"
             autoComplete="off"
@@ -38,8 +38,8 @@ class Searchbar extends Component {
             value={query}
             onChange={this.handleChange}
           />
-        </form>
-      </header>
+        </SearchForm>
+      </Header>
     );
   }
 }

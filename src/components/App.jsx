@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
 import Searchbar from './SearchBar/SearchBar';
@@ -6,8 +5,10 @@ import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
+import * as basicLightbox from 'basiclightbox';
 
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends Component {
   state = {
@@ -49,13 +50,21 @@ class App extends Component {
 
   handleSearchSubmit = query => {
     this.setState({ images: [], query: query, page: 1 });
+
+    if (this.state.query.trim() === '')
+      return toast.error('Something went wrong:) Please try again.', {});
   };
 
   handleLoadMore = () => {
     this.fetchImages();
   };
 
- handleImageClick = (largeImageURL) => {
+  handleImageClick = largeImageURL => {
+    const instance = basicLightbox.create(`
+    <img src="${largeImageURL}" />
+  `);
+    instance.show();
+
     this.setState({ showModal: true, selectedImage: largeImageURL });
   };
 
@@ -70,12 +79,18 @@ class App extends Component {
       <div>
         <Searchbar onSubmit={this.handleSearchSubmit} />
 
-        <ImageGallery images={images} />
+        <ImageGallery
+          images={images}
+          handleImageClick={this.handleImageClick}
+        />
 
         {loading && <Loader />}
 
         {images.length > 0 && !loading && (
-          <Button onClick={this.handleLoadMore} />
+          <Button
+            onClick={this.handleLoadMore}
+           shouldShowButton={images.length > 0}
+          />
         )}
 
         {showModal && (
@@ -84,6 +99,18 @@ class App extends Component {
             onClose={this.handleCloseModal}
           />
         )}
+        <ToastContainer
+          position="top-center"
+          autoClose={1500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </div>
     );
   }

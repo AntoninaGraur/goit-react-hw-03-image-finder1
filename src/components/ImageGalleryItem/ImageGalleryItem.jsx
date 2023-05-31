@@ -1,16 +1,17 @@
+import { Component } from 'react';
+import { ImgSize } from './ImageGalleryItem.styled';
 
-import React from 'react';
+class ImageGalleryItem extends Component {
+  handleClick = () => {
+    const { largeImageURL, handleImageClick } = this.props;
+    handleImageClick(largeImageURL);
+  };
 
-const ImageGalleryItem = ({ image, handleImageClick, largeImageURL, type }) => (
-  <li>
-    <img
-      src={image}
-      alt={type}
-      data-source={largeImageURL}
-      onClick={() => handleImageClick(largeImageURL)}
-      loading='lazy'
-    />
-  </li>
-);
+  render() {
+    const { image, type } = this.props;
+
+    return <ImgSize src={image} alt={type} onClick={this.handleClick} />;
+  }
+}
 
 export default ImageGalleryItem;
