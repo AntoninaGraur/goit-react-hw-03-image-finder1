@@ -1,7 +1,5 @@
 import { Component } from 'react';
-
 import { FaSearch } from 'react-icons/fa';
-
 import { Header, SearchInput, SearchBtn, SearchForm } from './SearchBar.styled';
 
 class Searchbar extends Component {
@@ -24,13 +22,12 @@ class Searchbar extends Component {
 
     return (
       <Header>
-        <SearchForm  onSubmit={this.handleSubmit}>
+        <SearchForm onSubmit={this.handleSubmit}>
           <SearchBtn type="submit">
             <FaSearch />
           </SearchBtn>
 
           <SearchInput
-            
             type="text"
             autoComplete="off"
             autoFocus

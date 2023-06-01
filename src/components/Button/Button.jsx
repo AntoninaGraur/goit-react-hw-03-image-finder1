@@ -1,12 +1,8 @@
 import React from 'react';
 import { LoadMoreBtn } from './Button.styled';
 
-const Button = ({ onClick }) => (
-  <LoadMoreBtn
-    type="button"
-    onClick={onClick}
-   
-  >
+const Button = ({ onClick, hideButton }) => (
+  <LoadMoreBtn type="button" onClick={onClick} hidden={hideButton}>
     Load more
   </LoadMoreBtn>
 );

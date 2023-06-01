@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import { ImgItem } from './ImageGallery.styled';
 
@@ -23,3 +23,4 @@ class ImageGallery extends Component {
 }
 
 export default ImageGallery;
+

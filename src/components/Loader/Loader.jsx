@@ -1,10 +1,10 @@
 
 import React from 'react';
-import  { ColorRing } from 'react-loader-spinner';
+import { ColorRing } from 'react-loader-spinner';
 
 const Loader = () => (
   <div>
-    <ColorRing  color="#00BFFF" height={80} width={80} />
+    <ColorRing color="#00BFFF" height={80} width={80} />
   </div>
 );
 
