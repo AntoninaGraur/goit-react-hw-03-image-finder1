@@ -14,8 +14,8 @@ const Button = ({ onClick }) => (
 export default Button;
 
 // if (hits.length < PER_PAGE) {
-//       loadMoreBtn.classList.add('is-hidden');
-//       Notiflix.Report.warning('We are sorry', 'But you have reached the end of search results.', 'Fine');
+//       LoadMoreBtn.classList.add('is-hidden');
+//        return toast.error('Sorry there no more images');
 //     } else {
-//       loadMoreBtn.classList.remove('is-hidden');
+//       LoadMoreBtn.classList.remove('is-hidden');
 //     }

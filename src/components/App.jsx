@@ -18,6 +18,7 @@ class App extends Component {
     loading: false,
     showModal: false,
     selectedImage: '',
+    hideButton: false,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -29,20 +30,26 @@ class App extends Component {
   fetchImages = () => {
     const { query, page } = this.state;
     const API_KEY = '36223855-9729aa23392660264fa235b58';
+    const PER_PAGE = 12;
 
     this.setState({ loading: true });
 
     axios
       .get(
-        `https://pixabay.com/api/?q=${query}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
+        `https://pixabay.com/api/?q=${query}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=${PER_PAGE}`
       )
       .then(response => {
+        const { hits } = response.data;
+
         this.setState(prevState => ({
           images: [...prevState.images, ...response.data.hits],
           page: prevState.page + 1,
+          hideButton: hits.length < PER_PAGE,
         }));
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        throw new Error(error);
+      })
       .finally(() => {
         this.setState({ loading: false });
       });
@@ -52,7 +59,7 @@ class App extends Component {
     this.setState({ images: [], query: query, page: 1 });
 
     if (this.state.query.trim() === '')
-      return toast.error('Something went wrong:) Please try again.', {});
+      return toast.error('Something went wrong:) Please try again.');
   };
 
   handleLoadMore = () => {
@@ -73,7 +80,8 @@ class App extends Component {
   };
 
   render() {
-    const { images, loading, showModal, selectedImage } = this.state;
+    const { images, loading, showModal, selectedImage, hideButton } =
+      this.state;
 
     return (
       <div>
@@ -87,10 +95,7 @@ class App extends Component {
         {loading && <Loader />}
 
         {images.length > 0 && !loading && (
-          <Button
-            onClick={this.handleLoadMore}
-           shouldShowButton={images.length > 0}
-          />
+          <Button onClick={this.handleLoadMore} hideButton={hideButton} />
         )}
 
         {showModal && (

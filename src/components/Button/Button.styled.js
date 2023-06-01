@@ -19,7 +19,7 @@ export const LoadMoreBtn = styled.button`
     transform: scale(1.08);
     text-shadow: 1px 1px 2px whitesmoke;
   }
-  & .is-hidden{
+  /* &.is-hidden{
     display: none;
-  }
+  } */
 `;

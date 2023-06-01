@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { Overlay, ModalContainer, ModalImage } from './Modal.styled';
 // import * as basicLightbox from 'basiclightbox';
 
-
+const modalRoot =  document.getElementById('modal-root')
  
 class Modal extends Component {
   componentDidMount() {
@@ -34,9 +34,7 @@ class Modal extends Component {
         <ModalContainer>
           <ModalImage src={largeImageURL} alt="Large" />
         </ModalContainer>
-      </Overlay>,
-      document.getElementById('modal-root')
-    );
+      </Overlay>, modalRoot);
   }
 }
 
