@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import{ Component } from 'react';
 import { ImgSize } from './ImageGalleryItem.styled';
 
 class ImageGalleryItem extends Component {
@@ -8,8 +8,7 @@ class ImageGalleryItem extends Component {
   };
 
   render() {
-    const { image, type } = this.props;
-
+  const { image, type} = this.props
     return <ImgSize src={image} alt={type} onClick={this.handleClick} />;
   }
 }

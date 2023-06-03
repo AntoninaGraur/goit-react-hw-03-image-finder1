@@ -1,9 +1,8 @@
 import { Component } from 'react';
-import { createPortal } from 'react-dom';
-import { Overlay, ModalContainer, ModalImage } from './Modal.styled';
-// import * as basicLightbox from 'basiclightbox';
 
-const modalRoot =  document.getElementById('modal-root')
+
+
+
  
 class Modal extends Component {
   componentDidMount() {
@@ -25,17 +24,16 @@ class Modal extends Component {
       this.props.onClose();
     }
   };
-
-  render() {
-    const { largeImageURL } = this.props;
-
-    return createPortal(
-      <Overlay onClick={this.handleClick}>
-        <ModalContainer>
-          <ModalImage src={largeImageURL} alt="Large" />
-        </ModalContainer>
-      </Overlay>, modalRoot);
+    render() {
+      const { largeImageURL } = this.props;
+      
+    return (
+      <div className="Overlay" onClick={this.handleClick}>
+        <div className="Modal">
+          <img src={largeImageURL} alt="Large" />
+        </div>
+      </div>
+    );
   }
 }
-
 export default Modal;
