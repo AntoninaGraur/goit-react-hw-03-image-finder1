@@ -1,9 +1,6 @@
 import { Component } from 'react';
+import { Overlay, ModalContainer, ModalImage } from './Modal.styled';
 
-
-
-
- 
 class Modal extends Component {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
@@ -24,16 +21,18 @@ class Modal extends Component {
       this.props.onClose();
     }
   };
-    render() {
-      const { largeImageURL } = this.props;
-      
+
+  render() {
+    const { largeImageURL } = this.props;
+
     return (
-      <div className="Overlay" onClick={this.handleClick}>
-        <div className="Modal">
-          <img src={largeImageURL} alt="Large" />
-        </div>
-      </div>
+      <Overlay onClick={this.handleClick}>
+        <ModalContainer>
+          <ModalImage src={largeImageURL} alt="Large" />
+        </ModalContainer>
+      </Overlay>
     );
   }
 }
+
 export default Modal;

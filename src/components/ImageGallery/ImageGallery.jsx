@@ -1,33 +1,28 @@
 import { Component } from 'react';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import { ImgItem } from './ImageGallery.styled';
-// import * as basicLightbox from 'basiclightbox';
+import * as basicLightbox from 'basiclightbox';
 
 class ImageGallery extends Component {
-
-  // handleImageClick = largeImageURL => {
-  // const instance = basicLightbox.create(`
-  //   <img src="${largeImageURL}" width="800" height="600"/>
-  // `);
-    
-  //   instance.show()
-  //   this.setState({ showModal: true, selectedImage: largeImageURL });
-  // };
-
+  handleOpenModal = largeImageURL => {
+    const instance = basicLightbox.create(`
+      <img src="${largeImageURL}" width="750" height="650"/>
+    `);
+    instance.show();
+  };
 
   render() {
-    const { images, handleImageClick } = this.props;
+    const { images } = this.props;
 
-        return (
+    return (
       <ImgItem>
         {images.map(el => (
           <ImageGalleryItem
-            
             key={el.id}
             image={el.webformatURL}
             largeImageURL={el.largeImageURL}
             type={el.type}
-            handleImageClick={handleImageClick}
+            handleOpenModal={this.handleOpenModal}
           />
         ))}
       </ImgItem>
